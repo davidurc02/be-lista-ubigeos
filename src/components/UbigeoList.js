@@ -43,7 +43,7 @@ class UbigeoList extends React.Component {
         })
         list[ind] = tempElem
       })
-      console.log(list)
+      
       that.setState({ ubigeoList: list })
 
     }
