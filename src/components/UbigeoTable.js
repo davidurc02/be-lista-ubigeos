@@ -10,6 +10,13 @@ class UbigeoTable extends React.Component {
     }
   }
 
+  static getDerivedStateFromProps(props, state){
+    return Object.assign({},state,{
+      type:props.type,
+      data:props.data
+    })
+  }
+
   generateDeptTable() {
 
     let data = this.state.data
