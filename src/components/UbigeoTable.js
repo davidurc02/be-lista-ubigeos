@@ -4,52 +4,138 @@ class UbigeoTable extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {  type: this.props.type,
-                    data: this.props.data };
-                    console.log("propsss: ",this.props)
+    this.state = {
+      type: this.props.type,
+      data: this.props.data
+    }
   }
 
-  generateDeptTable(){
+  generateDeptTable() {
+
     let data = this.state.data
-    let rowArray = []
-    console.log("data: ", data)
-    data.forEach(function(element) {
-      rowArray.push(  <tr>
-                        <td>{element[0]}</td>
-                        <td>{element[1]}</td>
-                        <td>{element[2]}</td>
-                        <td>{element[3]}</td>
-                        <td>{element[4]}</td>
-                        <td>{element[5]}</td>
-                      </tr>)
+    let newTableData = []//table data as strings
+    let rowArray = []//html table with data
+    let includedItems = []
+
+    data.forEach(function (dataItem) {
+      if (newTableData.length > 0) {
+        if (!includedItems.includes(dataItem[0])) {
+          newTableData.push([dataItem[0], dataItem[1], "-", "-"])
+          includedItems.push(dataItem[0])
+        }
+      } else {
+        newTableData.push([dataItem[0], dataItem[1], "-", "-"])
+        includedItems.push(dataItem[0])
+      }
     })
-    return(<div>
-      {rowArray}
-    </div>)
-  }
-  
-  generateDistTable(){
 
-  } 
-  generateProvTable(){
+    newTableData.map((rowElement) => {
+      rowArray.push(<tr>
+        <td>{rowElement[0]}</td>
+        <td>{rowElement[1]}</td>
+        <td>{rowElement[2]}</td>
+        <td>{rowElement[3]}</td>
+      </tr>)
+    })
+
+    return rowArray
+  }
+
+  generateProvTable() {
+
+    let data = this.state.data
+    let newTableData = []//table data as strings
+    let rowArray = []//html table with data
+    let includedItems = []
+
+    data.forEach(function (dataItem) {
+      if (newTableData.length > 0) {
+        if (!includedItems.includes(dataItem[2]) && dataItem[2].trim().length > 0) {
+          newTableData.push([dataItem[2], dataItem[3], dataItem[0].trim().length > 0 ? dataItem[0] : "-", dataItem[1].trim().length > 0 ? dataItem[1] : "-"])
+          includedItems.push(dataItem[2])
+        }
+      } else {
+        if (dataItem[2].trim().length > 0) {
+          newTableData.push([dataItem[2], dataItem[3], dataItem[0].trim().length > 0 ? dataItem[0] : "-", dataItem[1].trim().length > 0 ? dataItem[1] : "-"])
+          includedItems.push(dataItem[2])
+        }
+      }
+    })
+
+    newTableData.map((rowElement) => {
+      rowArray.push(<tr>
+        <td>{rowElement[0]}</td>
+        <td>{rowElement[1]}</td>
+        <td>{rowElement[2]}</td>
+        <td>{rowElement[3]}</td>
+      </tr>)
+    })
+    return rowArray
 
   }
+
+  generateDistTable() {
+
+    let data = this.state.data
+    let newTableData = []//table data as strings
+    let rowArray = []//html table with data
+    let includedItems = []
+
+    data.forEach(function (dataItem) {
+      if (newTableData.length > 0) {
+        if (!includedItems.includes(dataItem[4]) && dataItem[4].trim().length > 0) {
+          newTableData.push([dataItem[4], dataItem[5], dataItem[2].trim().length > 0 ? dataItem[2] : "-", dataItem[3].trim().length > 0 ? dataItem[3] : "-"])
+          includedItems.push(dataItem[4])
+        }
+      } else {
+        if (dataItem[4].trim().length > 0) {
+          newTableData.push([dataItem[4], dataItem[5], dataItem[2].trim().length > 0 ? dataItem[2] : "-", dataItem[3].trim().length > 0 ? dataItem[3] : "-"])
+          includedItems.push(dataItem[4])
+        }
+      }
+    })
+
+    newTableData.map((rowElement) => {
+      rowArray.push(<tr>
+        <td>{rowElement[0]}</td>
+        <td>{rowElement[1]}</td>
+        <td>{rowElement[2]}</td>
+        <td>{rowElement[3]}</td>
+      </tr>)
+    })
+
+    return rowArray
+  }
+
 
   render() {
     console.log("RENDER Table")
+    let generateDeptTable = this.generateDeptTable()
+    let generateProvTable = this.generateProvTable()
+    let generateDistTable = this.generateDistTable()
     return (
       <div>
-        <div className="shopping-list">
-          {this.props.type === "DEPARTAMENTO" &&
-            this.generateDeptTable
-          }
-          {this.props.type === "DISTRITO" &&
-            this.generateDeptTable
-          }
-          {this.props.type === "PROVINCIA" &&
-            this.generateDeptTable
-          }
-        </div>
+        < table>
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Nombre</th>
+              <th>Código Padre</th>
+              <th>Descripción Padre</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.type === "DEPARTAMENTO" &&
+              generateDeptTable
+            }
+            {this.props.type === "PROVINCIA" &&
+              generateProvTable
+            }
+            {this.props.type === "DISTRITO" &&
+              generateDistTable
+            }
+          </tbody>
+        </table>
       </div>
     )
   }
