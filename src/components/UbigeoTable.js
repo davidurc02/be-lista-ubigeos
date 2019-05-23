@@ -16,6 +16,7 @@ class UbigeoTable extends React.Component {
     let newTableData = []//table data as strings
     let rowArray = []//html table with data
     let includedItems = []
+    let keyid = 0
 
     data.forEach(function (dataItem) {
       if (newTableData.length > 0) {
@@ -30,7 +31,8 @@ class UbigeoTable extends React.Component {
     })
 
     newTableData.forEach((rowElement) => {
-      rowArray.push(<tr>
+      keyid++
+      rowArray.push(<tr key={"deptr"+keyid}>
         <td>{rowElement[0]}</td>
         <td>{rowElement[1]}</td>
         <td>{rowElement[2]}</td>
@@ -47,6 +49,7 @@ class UbigeoTable extends React.Component {
     let newTableData = []//table data as strings
     let rowArray = []//html table with data
     let includedItems = []
+    let keyid = 0
 
     data.forEach(function (dataItem) {
       if (newTableData.length > 0) {
@@ -63,7 +66,8 @@ class UbigeoTable extends React.Component {
     })
 
     newTableData.forEach((rowElement) => {
-      rowArray.push(<tr>
+      keyid++
+      rowArray.push(<tr key={"provr"+keyid}>
         <td>{rowElement[0]}</td>
         <td>{rowElement[1]}</td>
         <td>{rowElement[2]}</td>
@@ -81,6 +85,7 @@ class UbigeoTable extends React.Component {
     let newTableData = []//table data as strings
     let rowArray = []//html table with data
     let includedItems = []
+    let keyid = 0
 
     data.forEach(function (dataItem) {
       if (newTableData.length > 0) {
@@ -97,7 +102,8 @@ class UbigeoTable extends React.Component {
     })
 
     newTableData.forEach((rowElement) => {
-      rowArray.push(<tr>
+      keyid++
+      rowArray.push(<tr key={"distr"+keyid}>
         <td>{rowElement[0]}</td>
         <td>{rowElement[1]}</td>
         <td>{rowElement[2]}</td>
