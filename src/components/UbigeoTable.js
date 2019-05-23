@@ -29,7 +29,7 @@ class UbigeoTable extends React.Component {
       }
     })
 
-    newTableData.map((rowElement) => {
+    newTableData.forEach((rowElement) => {
       rowArray.push(<tr>
         <td>{rowElement[0]}</td>
         <td>{rowElement[1]}</td>
@@ -62,7 +62,7 @@ class UbigeoTable extends React.Component {
       }
     })
 
-    newTableData.map((rowElement) => {
+    newTableData.forEach((rowElement) => {
       rowArray.push(<tr>
         <td>{rowElement[0]}</td>
         <td>{rowElement[1]}</td>
@@ -70,6 +70,7 @@ class UbigeoTable extends React.Component {
         <td>{rowElement[3]}</td>
       </tr>)
     })
+
     return rowArray
 
   }
@@ -95,7 +96,7 @@ class UbigeoTable extends React.Component {
       }
     })
 
-    newTableData.map((rowElement) => {
+    newTableData.forEach((rowElement) => {
       rowArray.push(<tr>
         <td>{rowElement[0]}</td>
         <td>{rowElement[1]}</td>
@@ -109,13 +110,12 @@ class UbigeoTable extends React.Component {
 
 
   render() {
-    console.log("RENDER Table")
     let generateDeptTable = this.generateDeptTable()
     let generateProvTable = this.generateProvTable()
     let generateDistTable = this.generateDistTable()
     return (
       <div>
-        <table class="myTable">
+        <table className="myTable">
           <thead>
             <tr>
               <th>Código</th>

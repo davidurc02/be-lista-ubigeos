@@ -20,15 +20,15 @@ class UbigeoList extends React.Component {
       content = fileReader.result //file content
       let list = content.split("\n") //List of entries
 
-      list.map((elem, ind) => {
+      list.forEach((elem, ind) => {
         list[ind] = elem.split("/")
       })
 
       let tempElem
       let tempStr
-      list.map((listElem, ind) => {
+      list.forEach((listElem, ind) => {
         tempElem = []
-        listElem.map((element) => {
+        listElem.forEach((element) => {
           if (/"/.test(element)) {
             element = element.replace("\"", "")
           }
