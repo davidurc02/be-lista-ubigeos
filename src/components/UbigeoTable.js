@@ -115,7 +115,7 @@ class UbigeoTable extends React.Component {
     let generateDistTable = this.generateDistTable()
     return (
       <div>
-        < table>
+        <table class="myTable">
           <thead>
             <tr>
               <th>Código</th>
